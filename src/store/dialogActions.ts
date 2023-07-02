@@ -1,5 +1,5 @@
-import { state } from "../store";
-import { DialogBaseState } from "../types";
+import { state } from "./store";
+import { DialogBaseState } from "./types";
 
 export const bindDialogControls = (
   show: DialogBaseState["showFn"],

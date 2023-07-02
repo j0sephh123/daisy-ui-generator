@@ -1,4 +1,4 @@
-import { openDialog } from "../store/actions/dialogActions";
+import { openDialog } from "../store/dialogActions";
 
 export default function TheNavbar() {
   return (

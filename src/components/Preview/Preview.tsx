@@ -3,19 +3,18 @@ import TabSwitcher, { TabState } from "../TabSwitcher";
 import Wrapper from "./Wrapper";
 import PreviewTab from "./PreviewTab";
 import MarkupTab from "./MarkupTab";
+import { buttonVariants } from "../../constants";
+import { useStore } from "../../store/store";
 
-export interface ComponentVariant {
-  id: string;
-  name: string;
-  class: string;
-  text: string;
-}
+const Preview = () => {
+  const {
+    preview: { selectedVariant },
+  } = useStore();
 
-interface PreviewProps {
-  selectedComponent: ComponentVariant | undefined;
-}
+  const selectedComponent = buttonVariants.find(
+    (variant) => variant.class === selectedVariant
+  );
 
-const Preview = ({ selectedComponent }: PreviewProps) => {
   const [tabState, setTabState] = useState<TabState>("preview");
 
   if (!selectedComponent) {
@@ -24,7 +23,7 @@ const Preview = ({ selectedComponent }: PreviewProps) => {
 
   const { class: className, text } = selectedComponent;
 
-  let buttonCode = '';
+  let buttonCode = "";
   if (selectedComponent) {
     buttonCode = `<button className="${selectedComponent.class}">${selectedComponent.text}</button>`;
   }
@@ -32,10 +31,10 @@ const Preview = ({ selectedComponent }: PreviewProps) => {
   return (
     <Wrapper>
       <TabSwitcher tabState={tabState} setTabState={setTabState} />
-      {tabState === "preview" && <PreviewTab className={className} text={text} />}
-      {tabState === "markup" && (
-        <MarkupTab code={buttonCode} />
+      {tabState === "preview" && (
+        <PreviewTab className={className} text={text} />
       )}
+      {tabState === "markup" && <MarkupTab code={buttonCode} />}
     </Wrapper>
   );
 };

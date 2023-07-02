@@ -1,8 +1,5 @@
 import { useCallback } from "react";
-import {
-  bindDialogControls,
-  closeDialog,
-} from "../store/actions/dialogActions";
+import { bindDialogControls, closeDialog } from "../store/dialogActions";
 
 export default function Dialog() {
   const refCallback = useCallback((ref: HTMLDialogElement | null) => {

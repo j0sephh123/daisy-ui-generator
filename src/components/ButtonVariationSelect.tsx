@@ -1,29 +1,31 @@
 import { ChangeEvent } from "react";
-import { ComponentVariant } from "./Preview/Preview";
+import { buttonVariants } from "../constants";
+import { setSelectedVariant } from "../store/previewActions";
+import { useStore } from "../store/store";
 
-interface ButtonVariationSelectProps {
-  buttonVariants: ComponentVariant[];
-  selectedVariant: string;
-  handleChange: (event: ChangeEvent<HTMLSelectElement>) => void;
-}
+export const ButtonVariationSelect = () => {
+  const {
+    preview: { selectedVariant },
+  } = useStore();
 
-export const ButtonVariationSelect = ({
-  buttonVariants,
-  selectedVariant,
-  handleChange,
-}: ButtonVariationSelectProps) => (
-  <select
-    className="select w-full max-w-xs"
-    value={selectedVariant}
-    onChange={handleChange}
-  >
-    <option disabled selected>
-      Pick a variant
-    </option>
-    {buttonVariants.map((variant) => (
-      <option key={variant.id} value={variant.class}>
-        {variant.name}
+  const handleChange = (event: ChangeEvent<HTMLSelectElement>) => {
+    setSelectedVariant(event.target.value);
+  };
+
+  return (
+    <select
+      className="select w-full max-w-xs"
+      value={selectedVariant}
+      onChange={handleChange}
+    >
+      <option disabled selected>
+        Pick a variant
       </option>
-    ))}
-  </select>
-);
+      {buttonVariants.map((variant) => (
+        <option key={variant.id} value={variant.class}>
+          {variant.name}
+        </option>
+      ))}
+    </select>
+  );
+};
