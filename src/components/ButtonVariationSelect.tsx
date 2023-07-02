@@ -1,5 +1,5 @@
 import { ChangeEvent } from "react";
-import { ComponentVariant } from "./Preview";
+import { ComponentVariant } from "./Preview/Preview";
 
 interface ButtonVariationSelectProps {
   buttonVariants: ComponentVariant[];

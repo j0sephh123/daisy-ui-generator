@@ -1,6 +1,6 @@
 import { useState, ChangeEvent } from "react";
 import { ButtonVariationSelect } from "./ButtonVariationSelect";
-import Preview from "./Preview";
+import Preview from "./Preview/Preview";
 
 const buttonVariants = [
   { id: "1", name: "Default", class: "btn", text: "Button" },
