@@ -24,12 +24,17 @@ const Preview = ({ selectedComponent }: PreviewProps) => {
 
   const { class: className, text } = selectedComponent;
 
+  let buttonCode = '';
+  if (selectedComponent) {
+    buttonCode = `<button className="${selectedComponent.class}">${selectedComponent.text}</button>`;
+  }
+
   return (
     <Wrapper>
       <TabSwitcher tabState={tabState} setTabState={setTabState} />
       {tabState === "preview" && <PreviewTab className={className} text={text} />}
       {tabState === "markup" && (
-        <MarkupTab code={`<button className="btn">Button</button>`} />
+        <MarkupTab code={buttonCode} />
       )}
     </Wrapper>
   );
